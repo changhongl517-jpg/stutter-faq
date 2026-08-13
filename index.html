@@ -253,13 +253,13 @@ async function init() {
     TOPICS = await res.json();
   } catch (e) { /* 数据加载失败也能问 */ }
 
-  addMsg('bot', { text: '口吃只是更习惯，今天你想问什么问题呢？' });
+  addMsg('bot', { text: '口吃只是一个小习惯。你现在有什么想问的问题吗？' });
   input.focus();
 }
 
 $('#sendBtn').onclick = ask;
 input.addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
-$('#clearBtn').onclick = () => { chat.innerHTML = ''; addMsg('bot', { text: '口吃只是更习惯，今天你想问什么问题呢？' }); };
+$('#clearBtn').onclick = () => { chat.innerHTML = ''; addMsg('bot', { text: '口吃只是一个小习惯。你现在有什么想问的问题吗？' }); };
 
 init();
 </script>
