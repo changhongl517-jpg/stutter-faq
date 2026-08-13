@@ -126,7 +126,7 @@
 <header>
   <button class="h-back" id="clearBtn">⋯</button>
   <div class="h-center">
-    <div class="h-name">口吃问答</div>
+    <div class="h-name">小梁</div>
     <div class="h-status" id="hStatus">在线</div>
   </div>
   <img class="h-avatar" src="icons/icon-192.png" alt="口吃问答">
@@ -145,7 +145,7 @@ const chat = $('#chat');
 const input = $('#ask');
 let TOPICS = [];
 
-const BOT_AV = 'icons/icon-192.png';
+const BOT_AV = 'icons/avatar.jpg';
 
 // 消息：{ role: 'bot'|'user', qa, text }
 function addMsg(role, content) {
@@ -164,7 +164,7 @@ function addMsg(role, content) {
     wrap.innerHTML = `
       <div class="avatar"><img src="${BOT_AV}" alt=""></div>
       <div class="msg-col">
-        <div class="name">口吃问答</div>
+        <div class="name">小梁</div>
         <div class="bubble"></div>
       </div>`;
     const bubble = wrap.querySelector('.bubble');
@@ -190,7 +190,7 @@ function showTyping() {
   t.innerHTML = `
     <div class="avatar"><img src="${BOT_AV}" alt=""></div>
     <div class="msg-col">
-      <div class="name">口吃问答</div>
+      <div class="name">小梁</div>
       <div class="bubble typing-dots"><span></span><span></span><span></span></div>
     </div>`;
   chat.appendChild(t);
