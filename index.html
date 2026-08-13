@@ -28,94 +28,85 @@
     color: var(--text);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
-  /* 顶部 */
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 16px 12px;
+  /* 首页：极简提问 */
+  .home {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    text-align: center;
   }
-  header h1 {
-    font-size: 22px; font-weight: 700;
-    display: flex; align-items: center; gap: 8px;
+  .logo-badge {
+    width: 60px; height: 60px; border-radius: 18px;
+    background: linear-gradient(135deg, #218B6B, #38A87E);
+    color: #fff; font-size: 28px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px rgba(46,139,110,.25);
+    margin-bottom: 24px;
   }
-  header h1 .logo {
-    width: 30px; height: 30px; border-radius: 9px;
+  .greeting {
+    font-size: 22px; font-weight: 600; line-height: 1.5;
+    color: var(--text); margin-bottom: 30px;
+  }
+  .ask-box {
+    width: 100%; max-width: 460px;
+    display: flex; gap: 10px;
+  }
+  .ask-box input {
+    flex: 1; padding: 16px 18px;
+    border: 1px solid var(--border); border-radius: 16px;
+    background: var(--card); font-size: 17px; outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .ask-box input:focus { border-color: var(--primary); }
+  .ask-box button {
+    padding: 0 22px; border: none; border-radius: 16px;
     background: var(--primary); color: #fff;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .search-box { margin-top: 12px; position: relative; }
-  .search-box input {
-    width: 100%; padding: 11px 14px 11px 38px;
-    border: 1px solid var(--border); border-radius: 12px;
-    background: var(--bg); font-size: 16px; outline: none;
-  }
-  .search-box input:focus { border-color: var(--primary); background: #fff; }
-  .search-box::before {
-    content: "🔍"; position: absolute; left: 13px; top: 50%;
-    transform: translateY(-50%); font-size: 15px; opacity: .6;
-  }
-  /* 主题 chips */
-  nav {
-    display: flex; gap: 8px; overflow-x: auto;
-    padding: 12px 16px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  nav::-webkit-scrollbar { display: none; }
-  .chip {
+    font-size: 17px; font-weight: 600; cursor: pointer;
     flex-shrink: 0;
-    padding: 8px 15px; border-radius: 20px;
-    background: var(--card); border: 1px solid var(--border);
-    font-size: 14px; color: var(--text); cursor: pointer;
-    transition: all .15s;
   }
-  .chip.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
-  /* 问题列表 */
-  main { padding: 4px 16px 40px; }
-  .count { color: var(--muted); font-size: 13px; padding: 8px 2px 10px; }
-  .q-item {
-    background: var(--card); border-radius: var(--radius);
-    padding: 15px 16px; margin-bottom: 10px;
-    border: 1px solid var(--border);
-    cursor: pointer; transition: transform .1s;
-    display: flex; justify-content: space-between; align-items: center; gap: 10px;
-  }
-  .q-item:active { transform: scale(.98); background: var(--primary-light); }
-  .q-item .txt { font-size: 15px; font-weight: 500; flex: 1; }
-  .q-item .arr { color: var(--muted); font-size: 18px; }
-  .empty { text-align: center; color: var(--muted); padding: 40px 0; }
-  /* 答案详情页 */
-  #detailView {
-    position: fixed; inset: 0; z-index: 30;
-    background: var(--bg); overflow-y: auto;
-    display: none;
-  }
-  #detailView.show { display: block; }
-  .detail-top {
+  .ask-box button:active { opacity: .85; }
+  .hint { margin-top: 18px; color: var(--muted); font-size: 13px; }
+  .hint b { color: var(--primary); font-weight: 500; }
+
+  /* 结果视图 */
+  .result { display: none; min-height: 100vh; }
+  .result.show { display: block; }
+  .result-top {
     position: sticky; top: 0; z-index: 5;
     background: var(--card); border-bottom: 1px solid var(--border);
     padding: 14px 16px;
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: flex-start; gap: 12px;
   }
   .back-btn {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 50%;
     border: 1px solid var(--border); background: #fff;
     font-size: 16px; cursor: pointer; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .detail-body { padding: 22px 18px 60px; max-width: 720px; margin: 0 auto; }
-  .detail-body h2 { font-size: 20px; line-height: 1.5; margin-bottom: 16px; }
-  .detail-body .answer {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 18px;
-    font-size: 15.5px; white-space: pre-wrap;
+  .you-asked {
+    font-size: 15px; font-weight: 600; line-height: 1.5;
+    padding-top: 5px; word-break: break-word;
   }
-  .detail-body .answer b { color: var(--primary); }
+  .you-asked .label { font-size: 12px; color: var(--muted); font-weight: 400; display: block; }
+  .answers { padding: 16px 16px 40px; max-width: 720px; margin: 0 auto; }
+  .a-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px; margin-bottom: 12px;
+  }
+  .a-card h3 { font-size: 15px; margin-bottom: 10px; color: var(--primary); }
+  .a-card .body { font-size: 15px; white-space: pre-wrap; }
+  .a-card .body b { color: var(--primary); }
+  .no-result {
+    text-align: center; padding: 40px 20px; color: var(--muted);
+  }
+  .no-result .suggest { margin-top: 14px; font-size: 14px; }
+  .no-result .suggest a { color: var(--primary); text-decoration: none; }
   .tip {
-    margin-top: 18px; padding: 14px; border-radius: var(--radius);
+    margin: 18px auto 40px; max-width: 720px; margin: 18px 16px 40px;
+    padding: 14px; border-radius: var(--radius);
     background: var(--primary-light); color: var(--primary);
     font-size: 13.5px; text-align: center;
   }
@@ -123,45 +114,32 @@
 </head>
 <body>
 
-<header>
-  <h1><span class="logo">语</span>口吃问答</h1>
-  <div class="search-box">
-    <input id="search" type="search" placeholder="搜索问题，如：能治好吗" autocomplete="off">
+<!-- 首页：一句话 + 输入框 -->
+<div id="home" class="home">
+  <div class="logo-badge">语</div>
+  <p class="greeting">口吃只是更习惯，<br>今天你想问什么问题呢？</p>
+  <div class="ask-box">
+    <input id="ask" type="text" placeholder="输入你的问题…" autocomplete="off">
+    <button id="askBtn">问</button>
   </div>
-</header>
+  <div class="hint">试试：<b>口吃能治好吗</b>  ·  <b>孩子口吃怎么办</b></div>
+</div>
 
-<nav id="topics"></nav>
-
-<main id="list">
-  <div class="empty">加载中…</div>
-</main>
-
-<div id="detailView">
-  <div class="detail-top">
+<!-- 结果视图 -->
+<div id="result" class="result">
+  <div class="result-top">
     <button class="back-btn" id="backBtn">←</button>
-    <strong>解答</strong>
+    <div class="you-asked">
+      <span class="label">你问的是</span>
+      <span id="youAsked"></span>
+    </div>
   </div>
-  <div class="detail-body">
-    <h2 id="dQuestion"></h2>
-    <div class="answer" id="dAnswer"></div>
-    <div class="tip">💚 口吃不代表表达能力差。<br>你值得被理解，也值得被温柔对待。</div>
-  </div>
+  <div class="answers" id="answers"></div>
+  <div class="tip">💚 你值得被理解，也值得被温柔对待。</div>
 </div>
 
 <script>
 const $ = s => document.querySelector(s);
-
-// SF Symbol 名 → emoji（网页没有 SF Symbols，用 emoji 代替）
-const ICON_MAP = {
-  "questionmark.circle": "❓",
-  "magnifyingglass": "🔍",
-  "figure.child": "🧒",
-  "gearshape": "🛠️",
-  "heart": "💚",
-  "person": "🧑",
-  "stethoscope": "🏥"
-};
-
 let TOPICS = [];
 
 async function init() {
@@ -169,91 +147,83 @@ async function init() {
     const res = await fetch('questions.json');
     TOPICS = await res.json();
   } catch (e) {
-    $('#list').innerHTML = '<div class="empty">数据加载失败，请刷新重试</div>';
-    return;
+    // 数据加载失败时也能问
   }
-  renderTopics();
-  renderList();
 }
 
-// 主题 chips
-function renderTopics() {
-  const nav = $('#topics');
-  nav.innerHTML = '';
-  TOPICS.forEach((t, i) => {
-    const c = document.createElement('div');
-    c.className = 'chip' + (i === 0 ? ' active' : '');
-    c.textContent = (ICON_MAP[t.icon] || '') + ' ' + t.name;
-    c.dataset.id = t.id;
-    c.onclick = () => {
-      nav.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
-      c.classList.add('active');
-      $('#search').value = '';
-      renderList();
-      window.scrollTo(0, 0);
-    };
-    nav.appendChild(c);
-  });
-}
+// 提交提问
+async function ask() {
+  const q = $('#ask').value.trim();
+  if (!q) return;
+  $('#youAsked').textContent = q;
+  $('#answers').innerHTML = '';
+  $('#result').classList.add('show');
+  $('#result').scrollTop = 0;
+  window.scrollTo(0, 0);
 
-function activeTopic() {
-  const a = document.querySelector('.chip.active');
-  return TOPICS.find(t => t.id === (a ? a.dataset.id : TOPICS[0].id)) || TOPICS[0];
-}
+  const matches = search(q);
+  const box = $('#answers');
 
-// 问题列表（当前主题 或 搜索结果）
-function renderList() {
-  const kw = $('#search').value.trim().toLowerCase();
-  const list = $('#list');
-  list.innerHTML = '';
-
-  let items = [];
-  if (kw) {
-    items = TOPICS.flatMap(t => t.questions.map(q => ({ q, t })))
-      .filter(({ q }) =>
-        q.question.toLowerCase().includes(kw) || q.answer.toLowerCase().includes(kw));
-  } else {
-    const t = activeTopic();
-    items = t.questions.map(q => ({ q, t }));
-  }
-
-  if (!items.length) {
-    list.innerHTML = '<div class="empty">没有找到相关问题</div>';
+  if (!matches.length) {
+    box.innerHTML = `
+      <div class="no-result">
+        <div>这个问题我还没有现成答案 🙏</div>
+        <div class="suggest">不过下面这些常被问到的问题，也许能帮到你：<br>「口吃能治好吗」·「孩子口吃怎么办」<br>「口吃和紧张有关系吗」·「口吃会遗传吗」</div>
+      </div>`;
     return;
   }
 
-  const count = document.createElement('div');
-  count.className = 'count';
-  count.textContent = kw ? `找到 ${items.length} 个结果` : `${activeTopic().name} · ${items.length} 个问题`;
-  list.appendChild(count);
-
-  items.forEach(({ q }) => {
-    const d = document.createElement('div');
-    d.className = 'q-item';
-    d.innerHTML = `<span class="txt"></span><span class="arr">›</span>`;
-    d.querySelector('.txt').textContent = q.question;
-    d.onclick = () => showDetail(q);
-    list.appendChild(d);
+  matches.forEach(({ qa }) => {
+    const card = document.createElement('div');
+    card.className = 'a-card';
+    card.innerHTML = `<h3></h3><div class="body"></div>`;
+    card.querySelector('h3').textContent = qa.question;
+    card.querySelector('.body').innerHTML = format(qa.answer);
+    box.appendChild(card);
   });
 }
 
-// 答案详情
-function showDetail(q) {
-  $('#dQuestion').textContent = q.question;
-  $('#dAnswer').innerHTML = formatAnswer(q.answer);
-  $('#detailView').classList.add('show');
-  $('#detailView').scrollTop = 0;
+// 关键词匹配：中文用"双字窗口"匹配问题+答案，按命中数排序
+function search(query) {
+  const clean = query.replace(/[\s，。？！、,，.;；:：""''（）()·]+/g, "");
+  if (clean.length < 2) return [];
+
+  const grams = [];
+  for (let i = 0; i + 2 <= clean.length; i++) grams.push(clean.slice(i, i + 2));
+  if (!grams.length) return [];
+
+  const scored = TOPICS.flatMap(t => t.questions.map(qa => {
+    const q = qa.question.toLowerCase();
+    const a = qa.answer.toLowerCase();
+    let score = 0;
+    grams.forEach(g => {
+      if (q.includes(g)) score += 3;      // 问题标题命中，权重高
+      else if (a.includes(g)) score += 1; // 答案命中，权重低
+    });
+    return { qa, score };
+  }));
+
+  const best = scored.filter(x => x.score > 0);
+  best.sort((x, y) => y.score - x.score);
+  return best.slice(0, 4);
 }
 
-function formatAnswer(text) {
+function format(text) {
   return text
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
 }
 
-$('#backBtn').onclick = () => $('#detailView').classList.remove('show');
+// 回到首页
+function goHome() {
+  $('#result').classList.remove('show');
+  $('#ask').value = '';
+  $('#ask').focus();
+}
 
-$('#search').addEventListener('input', renderList);
+$('#askBtn').onclick = ask;
+$('#ask').addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
+$('#backBtn').onclick = goHome;
 
 init();
 </script>
